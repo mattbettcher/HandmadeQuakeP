@@ -1,10 +1,6 @@
 
 #include "types.h"
 
-// globals - I feel this is a bad way to handle this.
-i32 argc;
-u8 **argv;
-
 i32 Q_strcmp(u8 *s1, u8 *s2)
 {
 	while (*s1 == *s2)
@@ -52,9 +48,9 @@ i32 Q_atoi(u8 *str)
 	}
 }
 
-i32 CheckParam(u8 *param)
+i32 Com_CheckParam(u8 *param, i32 argc, u8 **argv)
 {
-	for (i32 i = 0; i < argc; i++)
+	for (i32 i = 1; i < argc; i++)
 	{
 		if (!Q_strcmp(param, argv[i]))
 			return i;
@@ -64,11 +60,11 @@ i32 CheckParam(u8 *param)
 
 
 
-i32 q_main()
+i32 main(i32 argc, u8 **argv)
 {
-	i32 test = CheckParam("-hello");
-	i32 test2 = CheckParam("-alpha");
-	i32 num = Q_atoi(argv[2]);
+	i32 test = Com_CheckParam("-hello", argc, argv);
+	i32 test2 = Com_CheckParam("-alpha", argc, argv);
+	i32 num = Q_atoi(argv[3]);
 
 	return 1;
 }
