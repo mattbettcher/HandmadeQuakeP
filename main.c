@@ -1,5 +1,8 @@
-
+// Types are included in their own header.
 #include "types.h"
+
+i32 argc;
+u8 **argv;
 
 i32 Q_strcmp(u8 *s1, u8 *s2)
 {
@@ -17,6 +20,7 @@ i32 Q_atoi(u8 *str)
 	i32 val = 0;
 	u8 c;
 
+	// negative
 	sign = (*str == '-') ? -1 : 1;
 
 	// hexadecimal
@@ -48,7 +52,7 @@ i32 Q_atoi(u8 *str)
 	}
 }
 
-i32 Com_CheckParam(u8 *param, i32 argc, u8 **argv)
+i32 Com_CheckParm(u8 *param)
 {
 	for (i32 i = 1; i < argc; i++)
 	{
@@ -60,11 +64,15 @@ i32 Com_CheckParam(u8 *param, i32 argc, u8 **argv)
 
 
 
-i32 main(i32 argc, u8 **argv)
+i32 main(i32 _argc, u8 **_argv)
 {
-	i32 test = Com_CheckParam("-hello", argc, argv);
-	i32 test2 = Com_CheckParam("-alpha", argc, argv);
+	// This is the equivelent of all the parsing from WinMain.
+	argc = _argc;
+	argv = _argv;
+
+	i32 test = Com_CheckParm("-hello", argc, argv);
+	i32 test2 = Com_CheckParm("-alpha", argc, argv);
 	i32 num = Q_atoi(argv[3]);
 
-	return 1;
+	return 0;
 }

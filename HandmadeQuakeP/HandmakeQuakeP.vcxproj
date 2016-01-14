@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.c" />
-    <ClCompile Include="..\sys_main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\types.h" />
