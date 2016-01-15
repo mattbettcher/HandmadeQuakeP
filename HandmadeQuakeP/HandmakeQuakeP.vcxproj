@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common.c" />
     <ClCompile Include="..\main.c" />
+    <ClCompile Include="..\q_stl.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\types.h" />
+    <ClInclude Include="..\common.h" />
+    <ClInclude Include="..\quakedef.h" />
+    <ClInclude Include="..\q_stl.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1F90469D-63A4-4EF4-948C-0B62870D7C2B}</ProjectGuid>
