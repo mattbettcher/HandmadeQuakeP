@@ -52,6 +52,8 @@ i32 Q_atoi(const char *str)
 	i32 val = 0;
 	char c;
 
+	if (!str) return 0;
+
 	// negative
 	sign = (*str == '-') ? -1 : 1;
 

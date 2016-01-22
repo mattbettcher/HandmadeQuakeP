@@ -1,4 +1,7 @@
+#include <stdlib.h>
 #include "SDL.h"
+
+bool IsRunning = true;
 
 int main(int, char**)
 {
@@ -16,11 +19,27 @@ int main(int, char**)
 
 		screenSurface = SDL_GetWindowSurface(window);
 
-		SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0x00, 0x00));
+		SDL_Event e;
 
-		SDL_UpdateWindowSurface(window);
+		while (IsRunning)
+		{
+			//Handle events on queue
+			while (SDL_PollEvent(&e))
+			{
+				switch (e.type)
+				{
+				case SDL_KEYUP:
+					IsRunning = false;
+				}
+			}
 
-		SDL_Delay(2000);
+			SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, rand() % 0xFF, rand() % 0xFF, rand() % 0xFF));
+
+			SDL_UpdateWindowSurface(window);
+
+			// update our game if it's time to
+			// draw graphics if it's time to
+		}
 	}
 
 	//Destroy window
