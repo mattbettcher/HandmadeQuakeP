@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include "SDL.h"
 
+typedef long long u64;
+typedef signed long long s64;
+
 bool IsRunning = true;
 
 int main(int, char**)
@@ -15,11 +18,16 @@ int main(int, char**)
 	}
 	else
 	{
-		window = SDL_CreateWindow("Module 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+		window = SDL_CreateWindow("Module 2.3", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
 
 		screenSurface = SDL_GetWindowSurface(window);
 
 		SDL_Event e;
+
+		u64 Frequncy = SDL_GetPerformanceFrequency();
+		double SecondsPerTick = 1.0 / (double)Frequncy;
+		u64 Tick, Tock;
+		Tick = SDL_GetPerformanceCounter();
 
 		while (IsRunning)
 		{
@@ -39,6 +47,11 @@ int main(int, char**)
 
 			// update our game if it's time to
 			// draw graphics if it's time to
+
+			Tock = SDL_GetPerformanceCounter();
+			s64 Interval = Tock - Tick;
+			double SecondsGoneBy = (double)Interval * SecondsPerTick;
+			Tick = SDL_GetPerformanceCounter();
 		}
 	}
 
